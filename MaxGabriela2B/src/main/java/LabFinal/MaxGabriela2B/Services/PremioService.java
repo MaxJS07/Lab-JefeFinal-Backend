@@ -2,6 +2,7 @@ package LabFinal.MaxGabriela2B.Services;
 
 import LabFinal.MaxGabriela2B.Entities.PeliculaEntity;
 import LabFinal.MaxGabriela2B.Entities.PremioEntity;
+import LabFinal.MaxGabriela2B.Exceptions.PremioNoEncontradoException;
 import LabFinal.MaxGabriela2B.Exceptions.PremioNoRegistradoException;
 import LabFinal.MaxGabriela2B.Models.DTO.PremioDTO;
 import LabFinal.MaxGabriela2B.Repositories.PeliculaRepository;
@@ -50,6 +51,29 @@ public class PremioService {
                 throw new PremioNoRegistradoException("No se pudo registrar el nuevo premio: " + e.getMessage());
             }
         }
+    }
+
+    //PUT
+    public PremioDTO putPremio(Long idPremio, PremioDTO dto){
+
+        PremioEntity premioExis = repo.findById(idPremio).orElseThrow(() -> new PremioNoEncontradoException("No se encontró el premio que se queria actualizar"));
+
+        //Actualizamos
+        if(dto.getIdPelicula() != null){
+            PeliculaEntity peli = repoPeli.findById(dto.getIdPelicula())
+                    .orElseThrow(() -> new IllegalArgumentException("No se encontró el Id de la pelicula que se quiere actualizar."));
+            premioExis.setIdPelicula(peli);
+        }
+
+        premioExis.setNombrePremio(dto.getNombrePremio());
+        premioExis.setCategoria(dto.getCategoria());
+        premioExis.setAnoPremio(dto.getAnoPremio());
+        premioExis.setResultado(dto.getResultado());
+        premioExis.setFechaRegisto(dto.getFechaRegisto());
+
+        PremioEntity premioUpdated = repo.save(premioExis);
+
+        return convertiraDto(premioUpdated);
     }
 
 
