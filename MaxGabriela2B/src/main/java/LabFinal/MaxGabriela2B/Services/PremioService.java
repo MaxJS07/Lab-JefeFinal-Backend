@@ -9,6 +9,7 @@ import LabFinal.MaxGabriela2B.Repositories.PeliculaRepository;
 import LabFinal.MaxGabriela2B.Repositories.PremioRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -76,7 +77,22 @@ public class PremioService {
         return convertiraDto(premioUpdated);
     }
 
-
+    //DELETE
+    public boolean eliminarPremio(Long id){
+        try{
+            PremioEntity premio = repo.findById(id).orElse(null);
+            if(premio != null){
+                repo.deleteById(id);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch (EmptyResultDataAccessException e){
+            throw new EmptyResultDataAccessException("No se encontró el premio que se quería eliminar. | " + "ID: " + id, 1);
+        }
+    }
 
     //Metodos de conversion
     private PremioDTO convertiraDto (PremioEntity entity){
