@@ -1,0 +1,15 @@
+LabFinal\MaxGabriela2B\Controllers\PremioController.class
+LabFinal\MaxGabriela2B\Models\DTO\PeliculaDTO.class
+LabFinal\MaxGabriela2B\ServletInitializer.class
+LabFinal\MaxGabriela2B\Entities\PremioEntity.class
+LabFinal\MaxGabriela2B\Services\PremioService.class
+LabFinal\MaxGabriela2B\Repositories\PremioRepository.class
+LabFinal\MaxGabriela2B\Exceptions\PremioNoRegistradoException.class
+LabFinal\MaxGabriela2B\Repositories\PeliculaRepository.class
+LabFinal\MaxGabriela2B\Exceptions\PremioNoEncontradoException.class
+LabFinal\MaxGabriela2B\Controllers\PeliculaController.class
+LabFinal\MaxGabriela2B\Models\DTO\PremioDTO.class
+LabFinal\MaxGabriela2B\Exceptions\PeliculaNoEncontradaException.class
+LabFinal\MaxGabriela2B\Services\PeliculaService.class
+LabFinal\MaxGabriela2B\MaxGabriela2BApplication.class
+LabFinal\MaxGabriela2B\Entities\PeliculaEntity.class
